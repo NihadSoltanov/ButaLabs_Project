@@ -112,6 +112,10 @@
             font-size: 1.75rem;
             color: #333;
         }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -128,11 +132,6 @@
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.portfolios.*') ? 'active' : '' }}" href="{{ route('admin.portfolios.index') }}">
                     <i class="fas fa-briefcase"></i> Portfolios
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.project-media.*') ? 'active' : '' }}" href="{{ route('admin.project-media.index') }}">
-                    <i class="fas fa-images"></i> Project Media
                 </a>
             </li>
             <li class="nav-item">
@@ -166,5 +165,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@stack('scripts')
 </body>
 </html>

@@ -11,11 +11,21 @@
         <p><strong>Link:</strong> <a href="{{ $portfolio->Link }}" target="_blank">{{ $portfolio->Link }}</a></p>
         <p><strong>Service:</strong> {{ $portfolio->service->Name ?? 'N/A' }}</p>
         <h6>Project Media:</h6>
-        @forelse($portfolio->projectMedia as $media)
-            <p><img src="{{ $media->MediaURL }}" alt="Media" style="max-width: 200px;"></p>
-        @empty
-            <p>No project media available.</p>
-        @endforelse
+        <div class="row">
+            @forelse($portfolio->projectMedia as $media)
+                <div class="col-md-3 mb-3">
+                    @if($media->media_type == 'image')
+                        <img src="{{ Storage::url($media->media_path) }}" alt="Media" class="img-fluid">
+                    @else
+                        <video controls class="img-fluid">
+                            <source src="{{ Storage::url($media->media_path) }}" type="video/mp4">
+                        </video>
+                    @endif
+                </div>
+            @empty
+                <p>No project media available.</p>
+            @endforelse
+        </div>
     </div>
     <a href="{{ route('admin.portfolios.index') }}" class="btn btn-secondary mt-3">Back to Portfolios</a>
 @endsection

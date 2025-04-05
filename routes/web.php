@@ -20,7 +20,6 @@ Route::get('/portfolios', [FrontPortfolioController::class, 'index'])->name('por
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('portfolios', App\Http\Controllers\Admin\PortfolioController::class);
-    Route::resource('project-media', App\Http\Controllers\Admin\ProjectMediaController::class);
     Route::resource('services', App\Http\Controllers\Admin\ServiceController::class);
     Route::resource('service-icons', App\Http\Controllers\Admin\ServiceIconController::class);
     Route::resource('home-pages', App\Http\Controllers\Admin\HomePageController::class);
