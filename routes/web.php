@@ -23,9 +23,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('services', App\Http\Controllers\Admin\ServiceController::class);
     Route::resource('service-icons', App\Http\Controllers\Admin\ServiceIconController::class);
     Route::resource('home-pages', App\Http\Controllers\Admin\HomePageController::class);
-});
-Route::get('/', function () {
-    return view('welcome');
+    Route::resource('about', App\Http\Controllers\Admin\AboutController::class);
+    Route::resource('partners', App\Http\Controllers\Admin\PartnerController::class);
+    Route::resource('team', App\Http\Controllers\Admin\TeamController::class);
 });
 
 Auth::routes();
