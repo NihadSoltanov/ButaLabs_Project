@@ -13,8 +13,15 @@
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa;
             color: #333;
-            font-size: 16px; /* Font boyutunu artırdık */
-            line-height: 1.6; /* Satır aralığını artırdık */
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh; /* Sayfanın minimum yüksekliğini viewport yüksekliği kadar yap */
+            display: flex;
+            flex-direction: column;
+        }
+        /* Main içeriği esneterek footer'ı alta it */
+        main {
+            flex: 1 0 auto;
         }
         .navbar {
             padding: 1rem 2rem;
@@ -22,29 +29,29 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .navbar-brand {
-            font-size: 1.75rem; /* Logo font boyutunu artırdık */
+            font-size: 1.75rem;
             font-weight: 700;
-            color: #1E90FF; /* Dodger Blue */
+            color: #1E90FF;
         }
         .navbar-nav .nav-link {
             color: #666;
             font-weight: 500;
             margin-left: 1rem;
             transition: color 0.3s ease;
-            font-size: 1.1rem; /* Nav link font boyutunu artırdık */
+            font-size: 1.1rem;
         }
         .navbar-nav .nav-link:hover {
-            color: #1E90FF; /* Dodger Blue */
+            color: #1E90FF;
         }
         .navbar .btn-primary {
-            background-color: #1E90FF; /* Dodger Blue */
+            background-color: #1E90FF;
             border: none;
             padding: 0.5rem 1.5rem;
             font-weight: 500;
-            font-size: 1.1rem; /* Buton font boyutunu artırdık */
+            font-size: 1.1rem;
         }
         .navbar .btn-primary:hover {
-            background-color: #1873CC; /* Koyu Dodger Blue */
+            background-color: #1873CC;
         }
         .hero-section {
             padding: 5rem 0;
@@ -52,13 +59,13 @@
             text-align: center;
         }
         .hero-section h1 {
-            font-size: 3rem; /* Başlık font boyutunu artırdık */
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: #1E90FF; /* Dodger Blue */
+            color: #1E90FF;
         }
         .hero-section p {
-            font-size: 1.25rem; /* Paragraf font boyutunu artırdık */
+            font-size: 1.25rem;
             color: #666;
             max-width: 700px;
             margin: 0 auto;
@@ -69,12 +76,12 @@
             text-align: center;
         }
         .stats-section h3 {
-            font-size: 2.5rem; /* İstatistik başlık font boyutunu artırdık */
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #1E90FF; /* Dodger Blue */
+            color: #1E90FF;
         }
         .stats-section p {
-            font-size: 1.1rem; /* İstatistik açıklama font boyutunu artırdık */
+            font-size: 1.1rem;
             color: #666;
             margin-bottom: 0;
         }
@@ -82,11 +89,11 @@
             padding: 5rem 0;
         }
         .section h2 {
-            font-size: 2.5rem; /* Bölüm başlık font boyutunu artırdık */
+            font-size: 2.5rem;
             font-weight: 700;
             text-align: center;
             margin-bottom: 2rem;
-            color: #1E90FF; /* Dodger Blue */
+            color: #1E90FF;
         }
         .card {
             border: none;
@@ -108,26 +115,27 @@
             padding: 1.5rem;
         }
         .card-title {
-            font-size: 1.5rem; /* Kart başlık font boyutunu artırdık */
+            font-size: 1.5rem;
             font-weight: 600;
             color: #212529;
         }
         .card-text {
             color: #666;
-            font-size: 1.1rem; /* Kart açıklama font boyutunu artırdık */
+            font-size: 1.1rem;
         }
         .btn-primary {
-            background-color: #1E90FF; /* Dodger Blue */
+            background-color: #1E90FF;
             border: none;
         }
         .btn-primary:hover {
-            background-color: #1873CC; /* Koyu Dodger Blue */
+            background-color: #1873CC;
         }
         .footer {
             padding: 3rem 0;
             background-color: #212529;
             color: #adb5bd;
             text-align: center;
+            flex-shrink: 0; /* Footer'ın küçülmesini engelle */
         }
         .footer a {
             color: #adb5bd;
@@ -135,10 +143,43 @@
             margin: 0 0.5rem;
         }
         .footer a:hover {
-            color: #1E90FF; /* Dodger Blue */
+            color: #1E90FF;
         }
         .footer p {
-            font-size: 1.1rem; /* Footer font boyutunu artırdık */
+            font-size: 1.1rem;
+        }
+        /* Daha önceki adımlarda eklediğimiz CSS */
+        .service-card,
+        .portfolio-card,
+        .team-card,
+        .partner-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .service-card:hover,
+        .portfolio-card:hover,
+        .team-card:hover,
+        .partner-card:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+        a {
+            cursor: pointer;
+        }
+        .btn {
+            cursor: pointer;
+        }
+        /* Detay Sayfaları için Yeni CSS */
+        .service-detail-section,
+        .portfolio-detail-section,
+        .team-detail-section,
+        .partner-detail-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        .service-detail-content,
+        .portfolio-detail-content,
+        .team-detail-content,
+        .partner-detail-content {
+            border-left: 4px solid #1E90FF;
         }
     </style>
 </head>
@@ -153,30 +194,33 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('services') }}">Services</a>
+                    <a class="nav-link" href="{{ route('services.index') }}">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('portfolio') }}">Portfolio</a>
+                    <a class="nav-link" href="{{ route('portfolio.index') }}">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('team') }}">Team</a>
+                    <a class="nav-link" href="{{ route('team.index') }}">Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('partners') }}">Partners</a>
+                    <a class="nav-link" href="{{ route('partners.index') }}">Partners</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary text-white" href="#">Contact Us</a>
-                </li>
+
             </ul>
         </div>
     </div>
 </nav>
 
 <!-- Main Content -->
-@yield('content')
+<main>
+    @yield('content')
+</main>
 
 <!-- Footer -->
 <footer class="footer">
@@ -185,7 +229,7 @@
         <p>
             <a href="#">Privacy Policy</a> |
             <a href="#">Terms of Service</a> |
-            <a href="#">Contact Us</a>
+
         </p>
     </div>
 </footer>

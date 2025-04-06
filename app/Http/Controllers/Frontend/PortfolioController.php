@@ -9,7 +9,13 @@ class PortfolioController extends Controller
 {
     public function index()
     {
-        $portfolios = Portfolio::all();
-        return view('frontend.portfolio', compact('portfolios'));
+        $portfolios = Portfolio::with('projectMedia')->get();
+        return view('frontend.portfolio.index', compact('portfolios'));
+    }
+
+    public function show(Portfolio $portfolio)
+    {
+        $portfolio->load('projectMedia');
+        return view('frontend.portfolio.show', compact('portfolio'));
     }
 }

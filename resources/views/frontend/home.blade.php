@@ -39,18 +39,32 @@
     <section class="section">
         <div class="container">
             <h2>Our Services</h2>
+            <p class="text-center mb-4">Explore the wide range of services we offer to help your business grow.</p>
             <div class="row">
-                @foreach ($services as $service)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <i class="bi {{ $service->Icon }} mb-3" style="font-size: 2.5rem; color: #1E90FF;"></i>
-                                <h5 class="card-title">{{ $service->Title }}</h5>
-                                <p class="card-text">{{ Str::limit($service->Text, 100) }}</p>
+                @forelse ($services as $service)
+                    <div class="col-md-3 mb-4">
+                        <a href="{{ route('services.show', $service) }}" class="text-decoration-none">
+                            <div class="card service-card">
+                                <div class="card-body text-center">
+                                    @if ($service->serviceIcon && $service->serviceIcon->IconName)
+                                        <i class="bi {{ $service->serviceIcon->IconName }} mb-3" style="font-size: 2.5rem; color: #1E90FF;"></i>
+                                    @else
+                                        <i class="bi bi-gear mb-3" style="font-size: 2.5rem; color: #1E90FF;"></i> <!-- Varsayılan ikon -->
+                                    @endif
+                                    <h5 class="card-title">{{ $service->Name }}</h5>
+                                    <p class="card-text">{{ $service->shortDesc ?? 'No description available.' }}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-12">
+                        <p class="text-center">No services available at the moment.</p>
+                    </div>
+                @endforelse
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ route('services.index') }}" class="btn btn-primary">View All Services</a>
             </div>
         </div>
     </section>
@@ -62,20 +76,22 @@
             <div class="row">
                 @foreach ($portfolios as $portfolio)
                     <div class="col-md-4 mb-4">
-                        <div class="card">
-                            @if ($portfolio->projectMedia->first())
-                                <img src="{{ asset('storage/' . $portfolio->projectMedia->first()->media_path) }}" alt="{{ $portfolio->Title }}">
-                            @endif
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $portfolio->Title }}</h5>
-                                <p class="card-text">{{ Str::limit($portfolio->Description, 100) }}</p>
+                        <a href="{{ route('portfolio.show', $portfolio) }}" class="text-decoration-none">
+                            <div class="card portfolio-card">
+                                @if ($portfolio->projectMedia->first())
+                                    <img src="{{ asset('storage/' . $portfolio->projectMedia->first()->media_path) }}" alt="{{ $portfolio->Title }}" class="card-img-top">
+                                @endif
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $portfolio->Title }}</h5>
+                                    <p class="card-text">{{ Str::limit($portfolio->Description, 100) }}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
             <div class="text-center mt-4">
-                <a href="{{ route('portfolio') }}" class="btn btn-primary">View All Projects</a>
+                <a href="{{ route('portfolio.index') }}" class="btn btn-primary">View All Projects</a>
             </div>
         </div>
     </section>
@@ -87,17 +103,19 @@
             <div class="row">
                 @foreach ($teamMembers as $member)
                     <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('storage/' . $member->Image) }}" alt="{{ $member->FullName }}">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ $member->FullName }}</h5>
-                                @if ($member->Link)
-                                    <a href="{{ $member->Link }}" target="_blank" class="btn btn-primary btn-sm">LinkedIn</a>
-                                @endif
+                        <a href="{{ route('team.show', $member) }}" class="text-decoration-none">
+                            <div class="card team-card">
+                                <img src="{{ asset('storage/' . $member->Image) }}" alt="{{ $member->FullName }}" class="card-img-top">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ $member->FullName }}</h5>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ route('team.index') }}" class="btn btn-primary">View All Team Members</a>
             </div>
         </div>
     </section>

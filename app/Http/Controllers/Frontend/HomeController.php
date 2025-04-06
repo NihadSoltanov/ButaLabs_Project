@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $services = Service::all();
+        $services = Service::with('serviceIcon')->get();
         $portfolios = Portfolio::take(3)->get();
         $partners = Partner::all();
         $teamMembers = Team::all();

@@ -10,6 +10,11 @@ class TeamController extends Controller
     public function index()
     {
         $teamMembers = Team::all();
-        return view('frontend.team', compact('teamMembers'));
+        return view('frontend.team.index', compact('teamMembers'));
+    }
+
+    public function show(Team $team)
+    {
+        return view('frontend.team.show', compact('team'));
     }
 }

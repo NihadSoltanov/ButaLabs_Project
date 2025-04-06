@@ -9,7 +9,13 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::all();
-        return view('frontend.services', compact('services'));
+        $services = Service::with('serviceIcon')->get();
+        return view('frontend.services.index', compact('services'));
+    }
+
+    public function show(Service $service)
+    {
+        $service->load('serviceIcon');
+        return view('frontend.services.show', compact('service'));
     }
 }
