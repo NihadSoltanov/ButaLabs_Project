@@ -144,11 +144,7 @@
                     <i class="fas fa-icons"></i> Service Icons
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.home-pages.*') ? 'active' : '' }}" href="{{ route('admin.home-pages.index') }}">
-                    <i class="fas fa-home"></i> Home Pages
-                </a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.about.*') ? 'active' : '' }}" href="{{ route('admin.about.index') }}">
                     <i class="fas fa-info-circle"></i> About

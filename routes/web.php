@@ -22,12 +22,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('portfolios', App\Http\Controllers\Admin\PortfolioController::class);
     Route::resource('services', App\Http\Controllers\Admin\ServiceController::class);
     Route::resource('service-icons', App\Http\Controllers\Admin\ServiceIconController::class);
-    Route::resource('home-pages', App\Http\Controllers\Admin\HomePageController::class);
     Route::resource('about', App\Http\Controllers\Admin\AboutController::class);
     Route::resource('partners', App\Http\Controllers\Admin\PartnerController::class);
     Route::resource('team', App\Http\Controllers\Admin\TeamController::class);
 });
 
+// Frontend Routes
+Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
+Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
+Route::get('/services', [App\Http\Controllers\Frontend\ServiceController::class, 'index'])->name('services');
+Route::get('/portfolio', [App\Http\Controllers\Frontend\PortfolioController::class, 'index'])->name('portfolio');
+Route::get('/team', [App\Http\Controllers\Frontend\TeamController::class, 'index'])->name('team');
+Route::get('/partners', [App\Http\Controllers\Frontend\PartnerController::class, 'index'])->name('partners');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
