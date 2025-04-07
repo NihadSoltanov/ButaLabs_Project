@@ -6,8 +6,21 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Welcome to Your Agency</h1>
-            <p>We are a leading digital agency in Azerbaijan, providing top-notch services to our clients.</p>
+            <div class="row align-items-center">
+                <!-- Sol Taraf: Metin -->
+                <div class="col-md-6 text-center text-md-start hero-text">
+                    <h1 class="typewriter">Welcome to Your Agency!</h1>
+                    <p>We are a leading digital agency in Azerbaijan, providing top-notch services to our clients.</p>
+                </div>
+                <!-- Sağ Taraf: SVG Şekil -->
+                <div class="col-md-6 text-center hero-svg-container">
+                    <svg class="hero-svg" width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="200" cy="200" r="150" fill="none" stroke="#1E90FF" stroke-width="20" stroke-dasharray="50,20" />
+                        <circle cx="200" cy="200" r="100" fill="none" stroke="#1E90FF" stroke-width="15" stroke-dasharray="30,15" />
+                        <circle cx="200" cy="200" r="50" fill="#1E90FF" />
+                    </svg>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -127,9 +140,17 @@
             <div class="row">
                 @foreach ($partners as $partner)
                     <div class="col-md-2 mb-4">
-                        <img src="{{ asset('storage/' . $partner->Logo) }}" alt="{{ $partner->Name }}" class="img-fluid">
+                        <a href="{{ route('partners.show', $partner) }}" class="text-decoration-none">
+                            <div class="partner-card">
+                                <img src="{{ asset('storage/' . $partner->Logo) }}" alt="{{ $partner->Name }}" class="img-fluid">
+                                <p class="text-center mt-2">{{ $partner->Name }}</p>
+                            </div>
+                        </a>
                     </div>
                 @endforeach
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ route('partners.index') }}" class="btn btn-primary">View All Partners</a>
             </div>
         </div>
     </section>

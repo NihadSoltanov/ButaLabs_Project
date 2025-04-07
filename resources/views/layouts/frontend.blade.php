@@ -15,11 +15,10 @@
             color: #333;
             font-size: 16px;
             line-height: 1.6;
-            min-height: 100vh; /* Sayfanın minimum yüksekliğini viewport yüksekliği kadar yap */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        /* Main içeriği esneterek footer'ı alta it */
         main {
             flex: 1 0 auto;
         }
@@ -54,21 +53,112 @@
             background-color: #1873CC;
         }
         .hero-section {
-            padding: 5rem 0;
+            padding: 8rem 0;
             background-color: #fff;
-            text-align: center;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero-section .row {
+            align-items: center;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            padding-left: 2rem;
         }
         .hero-section h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #1E90FF;
+            display: inline-block;
+            opacity: 0; /* Başlangıçta görünmez */
         }
         .hero-section p {
             font-size: 1.25rem;
             color: #666;
-            max-width: 700px;
-            margin: 0 auto;
+            max-width: 500px;
+            margin: 0;
+        }
+        /* Typewriter Animasyonu */
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid #1E90FF;
+            margin: 0;
+            letter-spacing: 0.05em;
+            white-space: normal;
+            word-wrap: break-word;
+            animation:
+                typing 3.5s steps(40, end) forwards, /* Yazı animasyonu */
+                blink-caret 0.75s step-end infinite, /* İmleç yanıp sönmesi */
+                fadeIn 0.5s ease-in forwards; /* Yavaşça görünme */
+        }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #1E90FF; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* SVG Şekil için Stil */
+        .hero-svg-container {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-svg {
+            max-width: 100%;
+            height: auto;
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* Responsive Tasarım */
+        @media (max-width: 767.98px) {
+            .hero-section {
+                padding: 4rem 0;
+                min-height: auto;
+            }
+            .hero-section .row {
+                flex-direction: column;
+            }
+            .hero-section .col-md-6 {
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            .hero-text {
+                order: 1;
+                text-align: center;
+                padding-left: 0;
+            }
+            .hero-svg-container {
+                order: 2;
+            }
+            .hero-section h1 {
+                font-size: 2.5rem;
+                white-space: normal;
+                word-wrap: break-word;
+            }
+            .hero-section p {
+                font-size: 1rem;
+                max-width: 100%;
+            }
+            .hero-svg {
+                width: 250px;
+                height: 250px;
+            }
         }
         .stats-section {
             padding: 3rem 0;
@@ -135,7 +225,7 @@
             background-color: #212529;
             color: #adb5bd;
             text-align: center;
-            flex-shrink: 0; /* Footer'ın küçülmesini engelle */
+            flex-shrink: 0;
         }
         .footer a {
             color: #adb5bd;
@@ -148,7 +238,6 @@
         .footer p {
             font-size: 1.1rem;
         }
-        /* Daha önceki adımlarda eklediğimiz CSS */
         .service-card,
         .portfolio-card,
         .team-card,
@@ -168,18 +257,23 @@
         .btn {
             cursor: pointer;
         }
-        /* Detay Sayfaları için Yeni CSS */
         .service-detail-section,
         .portfolio-detail-section,
         .team-detail-section,
-        .partner-detail-section {
+        .partner-detail-section,
+        .contact-section {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         .service-detail-content,
         .portfolio-detail-content,
         .team-detail-content,
-        .partner-detail-content {
+        .partner-detail-content,
+        .contact-info,
+        .contact-form {
             border-left: 4px solid #1E90FF;
+        }
+        .contact-info i {
+            color: #1E90FF;
         }
     </style>
 </head>
@@ -229,7 +323,6 @@
         <p>
             <a href="#">Privacy Policy</a> |
             <a href="#">Terms of Service</a> |
-
         </p>
     </div>
 </footer>
