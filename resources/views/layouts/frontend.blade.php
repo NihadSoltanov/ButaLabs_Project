@@ -54,14 +54,27 @@
         }
         .hero-section {
             padding: 8rem 0;
-            background-color: #fff;
+            background: linear-gradient(135deg, #e6f0fa 0%, #ffffff 100%);
             min-height: 600px;
             display: flex;
             align-items: center;
             position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(30, 144, 255, 0.1) 0%, transparent 70%);
+            z-index: 0;
         }
         .hero-section .row {
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
         .hero-text {
             position: relative;
@@ -74,42 +87,41 @@
             margin-bottom: 1.5rem;
             color: #1E90FF;
             display: inline-block;
-            opacity: 0; /* Başlangıçta görünmez */
+            position: relative;
+        }
+        /* İmleç (caret) için stil */
+        .hero-section h1:not(.finished)::after {
+            content: '';
+            position: absolute;
+            right: -0.15em;
+            top: 0;
+            width: 0.15em;
+            height: 1em;
+            background-color: #1E90FF;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { background-color: transparent; }
+            50% { background-color: #1E90FF; }
         }
         .hero-section p {
             font-size: 1.25rem;
-            color: #666;
+            color: #555;
             max-width: 500px;
             margin: 0;
+            line-height: 1.8;
         }
-        /* Typewriter Animasyonu */
-        .typewriter {
-            overflow: hidden;
-            border-right: 0.15em solid #1E90FF;
-            margin: 0;
-            letter-spacing: 0.05em;
-            white-space: normal;
-            word-wrap: break-word;
-            animation:
-                typing 3.5s steps(40, end) forwards, /* Yazı animasyonu */
-                blink-caret 0.75s step-end infinite, /* İmleç yanıp sönmesi */
-                fadeIn 0.5s ease-in forwards; /* Yavaşça görünme */
+        .hero-section .btn-primary {
+            background-color: #1E90FF;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #1E90FF; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .hero-section .btn-primary:hover {
+            background-color: #1873CC;
+            transform: translateY(-2px);
         }
         /* SVG Şekil için Stil */
         .hero-svg-container {
@@ -119,11 +131,110 @@
         .hero-svg {
             max-width: 100%;
             height: auto;
-            animation: rotate 20s linear infinite;
+            animation: pulse 2s infinite ease-in-out;
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        /* Koşullu Metin için Stil */
+        .space-warning {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .space-warning p {
+            font-size: 1rem;
+            color: #ff4444;
+            margin: 0;
+        }
+        /* About Section için Stil */
+        .about-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+        }
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(30, 144, 255, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        .about-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        .about-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E90FF;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #1E90FF;
+            border-radius: 2px;
+        }
+        .about-section h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        .about-section .lead {
+            font-size: 1.25rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        /* Ana Görsel/Video için Stil */
+        .about-main-image {
+            max-width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .about-main-image:hover {
+            transform: scale(1.02);
+        }
+        /* Galeri Kartları için Stil */
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .gallery-card img,
+        .gallery-card video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
         }
         /* Responsive Tasarım */
         @media (max-width: 767.98px) {
@@ -158,6 +269,33 @@
             .hero-svg {
                 width: 250px;
                 height: 250px;
+            }
+            .hero-section .btn-primary {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+            }
+            /* About Section için Responsive */
+            .about-section {
+                padding: 3rem 0;
+            }
+            .about-section h2 {
+                font-size: 2rem;
+            }
+            .about-section h2::after {
+                width: 40px;
+            }
+            .about-section h3 {
+                font-size: 1.5rem;
+            }
+            .about-section .lead {
+                font-size: 1.1rem;
+            }
+            .about-main-image {
+                height: 250px;
+            }
+            .gallery-card img,
+            .gallery-card video {
+                height: 150px;
             }
         }
         .stats-section {
@@ -328,5 +466,60 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // JavaScript ile Typewriter Efekti
+    function typeWriter() {
+        const textElement = document.getElementById('typewriter-text');
+        if (!textElement) return; // Eğer typewriter-text ID'si yoksa fonksiyonu durdur
+        const text = textElement.textContent;
+        textElement.textContent = ''; // Başlangıçta metni temizle
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                textElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, 100); // Her karakter için 100ms bekle
+            } else {
+                // Animasyon bittiğinde imleci kaldır
+                textElement.classList.add('finished');
+            }
+        }
+
+        type(); // Animasyonu başlat
+    }
+
+    // Sayfa yüklendiğinde typewriter efektini başlat
+    window.addEventListener('load', typeWriter);
+
+    // Ekran genişliğini kontrol ederek metni göster/gizle
+    function checkSpace() {
+        const heroText = document.querySelector('.hero-text');
+        const heroSvgContainer = document.querySelector('.hero-svg-container');
+        if (!heroText || !heroSvgContainer) return; // Eğer bu elementler yoksa fonksiyonu durdur
+        const spaceWarning = document.querySelector('.space-warning');
+        const windowWidth = window.innerWidth;
+
+        // Eğer ekran genişliği 767px'den küçükse (mobil cihazlar için)
+        if (windowWidth <= 767) {
+            // Hero Text ve SVG Container'ın genişliklerini kontrol et
+            const heroTextWidth = heroText.offsetWidth;
+            const heroSvgWidth = heroSvgContainer.offsetWidth;
+
+            // Eğer SVG'nin genişliği metnin genişliğini sıkıştırıyorsa
+            if (heroSvgWidth > windowWidth * 0.5) { // SVG genişliği ekranın yarısından büyükse
+                spaceWarning.style.display = 'block';
+            } else {
+                spaceWarning.style.display = 'none';
+            }
+        } else {
+            spaceWarning.style.display = 'none'; // Masaüstü görünümde metni gizle
+        }
+    }
+
+    // Sayfa yüklendiğinde ve ekran boyutu değiştiğinde kontrol et
+    window.addEventListener('load', checkSpace);
+    window.addEventListener('resize', checkSpace);
+</script>
 </body>
 </html>
