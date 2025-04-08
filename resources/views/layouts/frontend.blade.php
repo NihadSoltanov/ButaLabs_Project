@@ -18,6 +18,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            margin: 0; /* Body'nin margin'ini sıfırlıyoruz */
+            padding: 0; /* Body'nin padding'ini sıfırlıyoruz */
         }
         main {
             flex: 1 0 auto;
@@ -31,6 +33,14 @@
             font-size: 1.75rem;
             font-weight: 700;
             color: #1E90FF;
+        }
+        .footer .container {
+            padding-bottom: 0; /* Container'ın alt padding'ini sıfırlıyoruz */
+            margin-bottom: 0; /* Container'ın alt margin'ini sıfırlıyoruz */
+        }
+
+        .footer .row {
+            margin-bottom: 0; /* Row'un alt margin'ini sıfırlıyoruz */
         }
         .navbar-nav .nav-link {
             color: #666;
@@ -236,6 +246,151 @@
             object-fit: cover;
             display: block;
         }
+        /* Portfolio Detail Section için Stil */
+        .portfolio-detail-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        .portfolio-detail-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E90FF;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .portfolio-detail-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #1E90FF;
+            border-radius: 2px;
+        }
+        .portfolio-detail-content {
+            border-left: 4px solid #1E90FF;
+        }
+        /* Statik Medya için Stil (Tek Medya Durumu) */
+        .portfolio-detail-section .static-media {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Carousel için Stil */
+        .carousel {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-indicators {
+            bottom: -50px;
+        }
+        .carousel-indicators button {
+            background-color: #1E90FF;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+        .carousel-indicators .active {
+            background-color: #1873CC;
+        }
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            background: rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-size: 50%;
+        }
+        /* Partners Section için Stil */
+        .partners-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+        }
+        .partners-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(30, 144, 255, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        .partners-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        .partners-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E90FF;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .partners-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #1E90FF;
+            border-radius: 2px;
+        }
+        .partners-section .lead {
+            font-size: 1.25rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        /* Partner Kartları için Stil */
+        .partner-card {
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .partner-logo-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .partner-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        .partner-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0;
+        }
         /* Responsive Tasarım */
         @media (max-width: 767.98px) {
             .hero-section {
@@ -296,6 +451,44 @@
             .gallery-card img,
             .gallery-card video {
                 height: 150px;
+            }
+            /* Portfolio Detail için Responsive */
+            .portfolio-detail-section {
+                padding: 3rem 0;
+            }
+            .portfolio-detail-section h2 {
+                font-size: 2rem;
+            }
+            .portfolio-detail-section h2::after {
+                width: 40px;
+            }
+            .carousel-item img,
+            .carousel-item video {
+                height: 300px;
+            }
+            .portfolio-detail-section .static-media img,
+            .portfolio-detail-section .static-media video {
+                height: 300px;
+            }
+            /* Partners Section için Responsive */
+            .partners-section {
+                padding: 3rem 0;
+            }
+            .partners-section h2 {
+                font-size: 2rem;
+            }
+            .partners-section h2::after {
+                width: 40px;
+            }
+            .partners-section .lead {
+                font-size: 1.1rem;
+            }
+            .partner-logo-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+            .partner-name {
+                font-size: 1.1rem;
             }
         }
         .stats-section {
@@ -359,11 +552,13 @@
             background-color: #1873CC;
         }
         .footer {
-            padding: 3rem 0;
+            padding: 2rem 0; /* Padding'i koruyoruz */
             background-color: #212529;
             color: #adb5bd;
             text-align: center;
             flex-shrink: 0;
+            margin-bottom: 0; /* Alt boşluğu sıfırlıyoruz */
+            width: 100%; /* Footer'ın genişliğini tam yapıyoruz */
         }
         .footer a {
             color: #adb5bd;
@@ -443,7 +638,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('partners.index') }}">Partners</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -454,17 +651,43 @@
     @yield('content')
 </main>
 
-<!-- Footer -->
 <footer class="footer">
     <div class="container">
-        <p>© {{ date('Y') }} Your Agency. All rights reserved.</p>
-        <p>
-            <a href="#">Privacy Policy</a> |
-            <a href="#">Terms of Service</a> |
-        </p>
+        <div class="row">
+            <!-- Şirket Bilgileri -->
+            <div class="col-md-6 text-center text-md-start mb-4">
+                <h5 class="text-white fw-bold mb-3">Your Agency</h5>
+                <p><i class="bi bi-geo-alt-fill me-2"></i>Baku, Azerbaijan</p>
+                <p><i class="bi bi-envelope-fill me-2"></i>info@youragency.com</p>
+                <p><i class="bi bi-telephone-fill me-2"></i>+994 12 345 67 89</p>
+            </div>
+            <!-- Sosyal Medya ve Abonelik -->
+            <div class="col-md-6 text-center text-md-end mb-4">
+                <h5 class="text-white fw-bold mb-3">Follow Us</h5>
+                <p>
+                    <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </p>
+                <h5 class="text-white fw-bold mb-3">Newsletter</h5>
+                <form>
+                    <input type="email" class="form-control mb-2" placeholder="Your Email" required>
+                    <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <hr class="bg-light">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>© {{ date('Y') }} Your Agency. All rights reserved. |
+                    <a href="#">Privacy Policy</a> |
+                    <a href="#">Terms of Service</a>
+                </p>
+            </div>
+        </div>
     </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // JavaScript ile Typewriter Efekti

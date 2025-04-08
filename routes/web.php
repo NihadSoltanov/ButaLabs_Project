@@ -27,9 +27,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Frontend Routes
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
+Route::get('/home', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
 Route::resource('services', App\Http\Controllers\Frontend\ServiceController::class)->only(['index', 'show']);
 Route::resource('portfolio', App\Http\Controllers\Frontend\PortfolioController::class)->only(['index', 'show']);
 Route::resource('team', App\Http\Controllers\Frontend\TeamController::class)->only(['index', 'show']);
 Route::resource('partners', App\Http\Controllers\Frontend\PartnerController::class)->only(['index', 'show']);
+Route::get('/contact', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [App\Http\Controllers\Frontend\ContactController::class, 'submit'])->name('contact.submit');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
